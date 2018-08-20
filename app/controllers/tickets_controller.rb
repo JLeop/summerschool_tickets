@@ -9,7 +9,9 @@ class TicketsController < ApplicationController
   # might not need new since I want to create a new ticket on the index page.
   # would need to give index a ticket.new
   def new
-    Ticket.new
+    @ticket = Ticket.new
+    @ta_names = User.where(ta: true).map { |ta| ta.name }
+    @ta_names.unshift("First Available")
   end
 
   def create
@@ -47,6 +49,6 @@ class TicketsController < ApplicationController
   end
 
   def ticket_params
-    params.require(:ticket).permit(:question)
+    params.require(:ticket).permit(:question, :ta)
   end
 end
