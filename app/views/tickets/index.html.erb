@@ -1,0 +1,11 @@
+<h1>Open Tickets</h1>
+<%= link_to "New Ticket", new_ticket_path %>
+<% @tickets.all.each do |ticket| %>
+  <p>Question: <%= ticket.question %></p>
+  <p>Student: <%= ticket.student.name %></p>
+  <p>TA: <%= ticket.ta.name %></p>
+  <p>Status: <%= ticket.status %></p>
+  <%= link_to "Edit", edit_ticket_path(ticket), class: ""%>
+  <%= link_to "Delete ", ticket_path(ticket), class: "", method: :delete%>
+  <p>---------------------------------------</p>
+<% end %>
