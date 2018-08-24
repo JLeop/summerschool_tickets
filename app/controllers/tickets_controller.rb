@@ -1,5 +1,5 @@
 class TicketsController < ApplicationController
-  before_action :set_ticket, only: [:edit, :update, :destroy, :take]
+  before_action :set_ticket, only: [:edit, :update, :destroy, :asssign_edit, :assign_update]
   # before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
 
   def index
@@ -40,7 +40,10 @@ class TicketsController < ApplicationController
     end
   end
 
-  def take
+  def assign_edit
+  end
+
+  def assign_update
     # need to allow only for ta: true
     @ticket.ta = current_user
     if @ticket.save!
