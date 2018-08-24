@@ -69,7 +69,7 @@ class TicketsController < ApplicationController
 
   def status_solved
     @ticket.status = "solved"
-    # authorize @ticket
+    authorize @ticket
     if @ticket.save!
       redirect_to tickets_path, notice: "Good Job Ticket was solved!"
     else
