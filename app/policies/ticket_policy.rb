@@ -19,13 +19,25 @@ class TicketPolicy < ApplicationPolicy
     user_is_owner_or_admin?
   end
 
+  def assign_update?
+    user_is_ta?
+  end
+
+  def status_solved?
+    user_is_ta?
+  end
+
   private
 
-  def user_is_owner_or_admin?
+  def user_is_owner_or_admin? # owner is always the student. TAs can create new tickets however.
     if user.nil?
     else
-      record.student == user or record.ta == user || user.admin
+      record.student == user || user.admin
     end
     # user is current_user in the policy file.
+  end
+
+  def user_is_ta?
+    user.ta == true
   end
 end

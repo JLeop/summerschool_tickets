@@ -5,13 +5,9 @@ class TicketsController < ApplicationController
   # before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
 
   def index
-    # @tickets = Ticket.where(status: "pending").or(Ticket.where(status: "assigned")).order(created_at: :desc)
     @tickets = policy_scope(Ticket).where(status: "pending").or(Ticket.where(status: "assigned")).order(created_at: :desc)
-    # @tickets = policy_scope(Ticket).order(created_at: :desc)
   end
 
-  # might not need new since I want to create a new ticket on the index page.
-  # would need to give index a ticket.new
   def new
     @ticket = Ticket.new
     authorize @ticket
@@ -29,11 +25,11 @@ class TicketsController < ApplicationController
   end
 
   def edit
-    authorize @ticket
+    # authorize @ticket
   end
 
   def update
-    authorize @ticket
+    # authorize @ticket
     if @ticket.update(ticket_params)
       redirect_to tickets_path, notice: "Successfully updated"
     else
@@ -49,7 +45,7 @@ class TicketsController < ApplicationController
   end
 
   def assign_edit
-    authorize @ticket
+    # authorize @ticket
   end
 
   def assign_update
@@ -66,14 +62,14 @@ class TicketsController < ApplicationController
   def status_checker
     if !@ticket.ta.nil?
       @ticket.status = "assigned"
-      authorize @ticket
+      # authorize @ticket
       @ticket.save!
     end
   end
 
   def status_solved
     @ticket.status = "solved"
-    authorize @ticket
+    # authorize @ticket
     if @ticket.save!
       redirect_to tickets_path, notice: "Good Job Ticket was solved!"
     else
