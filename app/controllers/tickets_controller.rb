@@ -1,5 +1,5 @@
 class TicketsController < ApplicationController
-  before_action :set_ticket, only: [:edit, :update, :destroy]
+  before_action :set_ticket, only: [:edit, :update, :destroy, :take]
   # before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
 
   def index
@@ -9,7 +9,7 @@ class TicketsController < ApplicationController
   # might not need new since I want to create a new ticket on the index page.
   # would need to give index a ticket.new
   def new
-    Ticket.new
+    @ticket = Ticket.new
   end
 
   def create
@@ -40,6 +40,16 @@ class TicketsController < ApplicationController
     end
   end
 
+  def take
+    # need to allow only for ta: true
+    @ticket.ta = current_user
+    if @ticket.save!
+      redirect_to tickets_path, notice: "Ticket was assigned to you!"
+    else
+      redirect_to tickets_path, alert: "Something went wrong"
+    end
+  end
+
   private
 
   def set_ticket
@@ -47,6 +57,6 @@ class TicketsController < ApplicationController
   end
 
   def ticket_params
-    params.require(:ticket).permit(:question)
+    params.require(:ticket).permit(:question, :ta_id)
   end
 end
