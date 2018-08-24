@@ -1,9 +1,2 @@
 <h1>Tickets#new</h1>
-
-<%= simple_form_for @ticket do |f| %>
-   <%= f.error_notification %>
-   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
-   <%= f.input :question, as: :text, placeholder: "Take a moment to explain your problem..." %>
-   <%= f.input :ta_id, collection: User.where(ta: true), label: "TA", value: :name, prompt: "First Available" %>
-   <%= f.button :submit, class: "btn btn-primary" %>
-<% end %>
+<%= render 'form' %>
