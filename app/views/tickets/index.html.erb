@@ -4,7 +4,7 @@
   <p>Question: <%= ticket.question %></p>
   <p>Student: <%= ticket.student.name %></p>
   <p>TA: <%= ticket.ta ? ticket.ta.name : "Unassigned" %></p>
-  <%= link_to "Take Ticket",  %>
+  <%= link_to "Take Ticket", assign_ticket_path(ticket), class: "", method: :patch %>
   <p>Status: <%= ticket.status %></p>
   <%= link_to "Edit", edit_ticket_path(ticket), class: ""%>
   <%= link_to "Delete ", ticket_path(ticket), class: "", method: :delete%>
