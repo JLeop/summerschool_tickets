@@ -12,6 +12,7 @@ Rails.application.routes.draw do
     member do
       get 'assign', to: 'tickets#assign_edit'
       patch 'assign', to: 'tickets#assign_update'
+      patch 'solved', to: 'tickets#status_solved'
     end
   end
 end

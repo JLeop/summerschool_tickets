@@ -1,9 +1,10 @@
 class TicketsController < ApplicationController
-  before_action :set_ticket, only: [:edit, :update, :destroy, :asssign_edit, :assign_update]
+  before_action :set_ticket, only: [:edit, :update, :destroy, :asssign_edit, :assign_update, :status_checker, :status_solved]
+  after_action :status_checker, only: [:create, :update, :assign_update]
   # before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
 
   def index
-    @tickets = Ticket.all
+    @tickets = Ticket.where(status: "pending").or(Ticket.where(status: "assigned")).order(created_at: :desc)
   end
 
   # might not need new since I want to create a new ticket on the index page.
@@ -48,6 +49,22 @@ class TicketsController < ApplicationController
     @ticket.ta = current_user
     if @ticket.save!
       redirect_to tickets_path, notice: "Ticket was assigned to you!"
+    else
+      redirect_to tickets_path, alert: "Something went wrong"
+    end
+  end
+
+  def status_checker
+    if !@ticket.ta.nil?
+      @ticket.status = "assigned"
+      @ticket.save!
+    end
+  end
+
+  def status_solved
+    @ticket.status = "solved"
+    if @ticket.save!
+      redirect_to tickets_path, notice: "Good Job Ticket was solved!"
     else
       redirect_to tickets_path, alert: "Something went wrong"
     end

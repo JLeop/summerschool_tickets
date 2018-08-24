@@ -1,12 +1,17 @@
 <h1>Open Tickets</h1>
 <%= link_to "New Ticket", new_ticket_path %>
+<br>
+<br>
 <% @tickets.all.each do |ticket| %>
   <p>Question: <%= ticket.question %></p>
   <p>Student: <%= ticket.student.name %></p>
   <%= link_to "Take Ticket", assign_ticket_path(ticket), class: "", method: :patch %>
   <p>TA: <%= ticket.ta ? ticket.ta.name : "Unassigned" %></p>
   <p>Status: <%= ticket.status %></p>
+  <%= link_to "Mark as Solved", solved_ticket_path(ticket), class: "", method: :patch %>
+  <br>
   <%= link_to "Edit", edit_ticket_path(ticket), class: ""%>
+  <br>
   <%= link_to "Delete ", ticket_path(ticket), class: "", method: :delete%>
-  <p>---------------------------------------</p>
+  <p>---------------------------------------</p><br>
 <% end %>
