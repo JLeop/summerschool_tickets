@@ -29,7 +29,7 @@ class TicketsController < ApplicationController
   end
 
   def update
-    # authorize @ticket
+    authorize @ticket
     if @ticket.update(ticket_params)
       redirect_to tickets_path, notice: "Successfully updated"
     else

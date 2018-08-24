@@ -6,7 +6,7 @@ class TicketPolicy < ApplicationPolicy
   end
 
   def create?
-    return true
+    user.present?
   end
 
   def update?
