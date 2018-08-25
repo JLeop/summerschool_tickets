@@ -38,10 +38,8 @@ class TicketsController < ApplicationController
   end
 
   def destroy
-    if @ticket.status == "pending"
-      @ticket.destroy
-      redirect_to tickets_path
-    end
+    @ticket.destroy
+    redirect_to tickets_path
   end
 
   def assign_edit

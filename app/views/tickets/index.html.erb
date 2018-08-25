@@ -8,27 +8,81 @@
 <p>------------------------------------------</p>
 
 <% @tickets.all.each do |ticket| %>
-  <p>Question: <%= ticket.question %></p>
-  <p>Student: <%= ticket.student.name %></p>
 
+<div class="card">
+  <div class="card-buttons">
+    <div class="share-buttons">
+      <% if user_signed_in? && current_user.ta == true %>
+        <%= link_to assign_ticket_path(ticket), method: :patch, action: 'go' do %>
+          <div class="share-button">
+            <div class="share-button-secondary">
+              <div class="share-button-secondary-content">
+                Take On
+              </div>
+            </div>
+            <div class="share-button-primary" style="background: #FFF102;">
+              <i class="share-button-icon far fa-thumbs-up"></i>
+            </div>
+          </div>
+        <% end %>
 
-  <p>TA: <%= ticket.ta ? ticket.ta.name : "Unassigned" %></p>
-  <p>Status: <%= ticket.status %></p>
-  <h3>Links</h3>
-  <% if user_signed_in? && current_user.ta == true %>
-    <%= link_to "Take Ticket", assign_ticket_path(ticket), class: "", method: :patch %>
-    <br>
-    <%= link_to "Mark as Solved", solved_ticket_path(ticket), class: "", method: :patch %>
+        <%= link_to solved_ticket_path(ticket), method: :patch, action: 'go' do  %>
+          <div class="share-button">
+            <div class="share-button-secondary">
+              <div class="share-button-secondary-content">
+                Solved
+              </div>
+            </div>
+            <div class="share-button-primary" style="background: #5FAD56;">
+            <i class="share-button-icon fas fa-check"></i>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+
+      <% if policy(ticket).edit? %>
+        <%= link_to edit_ticket_path(ticket), action: 'go' do  %>
+          <div class="share-button">
+            <div class="share-button-secondary">
+              <div class="share-button-secondary-content">
+                Edit
+              </div>
+            </div>
+            <div class="share-button-primary" style="background: #40C7F4;">
+              <i class="share-button-icon far fa-edit"></i>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+
+      <% if policy(ticket).destroy? %>
+        <%= link_to ticket_path(ticket), method: :delete, action: 'destroy' do %>
+          <div class="share-button">
+            <div class="share-button-secondary">
+              <div class="share-button-secondary-content">
+                Delete
+              </div>
+            </div>
+            <div class="share-button-primary" style="background: #F55D3E">
+              <i class="share-button-icon far fa-trash-alt"></i>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+
+    </div>
+  </div>
+  <div class="card-category">Status: <%= ticket.status %></div>
+  <div class="card-description">
+    <h2>Question: <%= ticket.question %></h2>
+    <h5>Student: <%= ticket.student.name %></h5>
+    <h5>Teaching Assistant: <%= ticket.ta ? ticket.ta.name : "Unassigned" %></h5>
+  </div>
+  <% if ticket.student.photo.filename %>
+    <%= cl_image_tag ticket.student.photo, crop: :fill, :quality=>"auto:eco", :fetch_format=>:auto,  class: "card-user" %>
+  <% else %>
+    <%= cl_image_tag "yoda.jpg", crop: :fill, :quality=>"auto:eco", :fetch_format=>:auto, class: "card-user" %>
   <% end %>
+</div>
 
-  <br>
-
-  <% if policy(ticket).edit? %>
-    <%= link_to "Edit", edit_ticket_path(ticket), class: ""%>
-  <% end %>  <br>
-
-  <% if policy(ticket).destroy? %>
-    <%= link_to "Delete ", ticket_path(ticket), class: "", method: :delete%>
-  <% end %>
-  <p>---------------------------------------</p><br>
 <% end %>

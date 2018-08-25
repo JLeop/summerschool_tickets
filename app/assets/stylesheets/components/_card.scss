@@ -1,0 +1,63 @@
+.card {
+  height: 175px;
+  // text-shadow: 0 1px 3px rgba(0,0,0,0.6);
+  background-size: cover !important;
+  background-position: center;
+  color: grey;
+  position: relative;
+  border-radius: 3px;
+  border: 1px solid lightgrey;
+}
+
+.card-buttons {
+  height: 100%;
+  width: 50px;
+  padding: 5px;
+  border-radius: 3px;
+  border-right: 0px solid lightgrey;
+  display: flex;
+  justify-content: space-between;
+}
+
+.card-user {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+}
+.card-category {
+  position: absolute;
+  top: 10px;
+  left: 60px;
+  font-size: 15px;
+  text-transform: uppercase;
+}
+.card-description {
+  position: absolute;
+  width: 80%;
+  bottom: 10px;
+  left: 60px;
+}
+.card-description h2 {
+  font-size: 24px;
+}
+.card-description p {
+  font-size: 14px;
+  opacity: 0.7;
+  font-weight: lighter;
+}
+.card-link {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  z-index: 2;
+  background: black;
+  opacity: 0;
+}
+.card-link:hover {
+  opacity: 0.1;
+}
