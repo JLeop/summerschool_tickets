@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   # get 'tickets/destroy'
   devise_for :users
   root to: 'tickets#index'
+  get '/archive', to: 'pages#archive'
+  get '/dashboard', to: 'pages#dashboard'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   resources :tickets, except: [:show] do
     member do

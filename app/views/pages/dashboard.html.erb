@@ -1,0 +1,6 @@
+<h1>Dashboard</h1>
+
+<p>Total Tickets: <%= Ticket.count %></p>
+<p>Total Solved Tickets: <%= Ticket.where(status: "solved").count %></p>
+
+<p>My Total Tickets: <%= Ticket.where(student: current_user).count + Ticket.where(ta: current_user).count %></p>
