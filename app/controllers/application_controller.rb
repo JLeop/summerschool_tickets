@@ -10,11 +10,12 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
 
   def configure_permitted_parameters
-    update_attrs = [:password, :password_confirmation, :current_password]
+    update_attrs = [:password, :password_confirmation, :current_password, :photo, :name]
+    devise_parameter_sanitizer.permit :sign_up, keys: update_attrs
     devise_parameter_sanitizer.permit :account_update, keys: update_attrs
   end
 
-  # Uncomment when you *really understand* Pundit!
+  # # Uncomment when you *really understand* Pundit!
   # rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
   # def user_not_authorized
   #   flash[:alert] = "You are not authorized to perform this action."
