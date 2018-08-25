@@ -1,0 +1,13 @@
+<h1>User Dashbaord</h1>
+<% User.all.each do |user| %>
+<p>-----------------------------</p>
+<% if user.photo.filename %>
+  <%= cl_image_tag user.photo, height: 60, width: 60, crop: :fill, :quality=>"auto:eco", :fetch_format=>:auto,  class: "avatar dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
+<% else %>
+  <%= cl_image_tag "yoda.jpg", height: 60, width: 60, crop: :fill, :quality=>"auto:eco", :fetch_format=>:auto, class: "avatar dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
+<% end %>
+<p>Username: <%= user.name %></p>
+<p>Useremail: <%= user.email %></p>
+<p>TA? : <%= user.ta %></p>
+
+<% end %>
