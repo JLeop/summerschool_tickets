@@ -38,6 +38,6 @@ class TicketPolicy < ApplicationPolicy
   end
 
   def user_is_ta?
-    user.ta == true
+    user.ta == true || user.admin
   end
 end
