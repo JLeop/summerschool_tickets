@@ -3,4 +3,8 @@ class PagesController < ApplicationController
 
   def home
   end
+
+  def archive
+    @tickets = Ticket.all
+  end
 end
