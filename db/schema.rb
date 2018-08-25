@@ -37,7 +37,7 @@ ActiveRecord::Schema.define(version: 2018_08_24_190856) do
     t.boolean "ta"
     t.string "name"
     t.bigint "ticket_id"
-    t.boolean "admin"
+    t.boolean "admin", default: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["ticket_id"], name: "index_users_on_ticket_id"
