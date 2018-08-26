@@ -5,11 +5,10 @@
 <% if policy(Ticket).new? %>
   <%= link_to "New Ticket", new_ticket_path %>
 <% end %>
-<p>------------------------------------------</p>
 
 <% @tickets.all.each do |ticket| %>
 
-<div class="card">
+<div class="card_ticket">
   <div class="card-buttons">
     <div class="share-buttons">
       <% if user_signed_in? && current_user.ta == true %>
