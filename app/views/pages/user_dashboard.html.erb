@@ -1,13 +1,28 @@
 <h1>User Dashbaord</h1>
-<% User.all.each do |user| %>
-<p>-----------------------------</p>
-<% if user.photo.filename %>
-  <%= cl_image_tag user.photo, height: 60, width: 60, crop: :fill, :quality=>"auto:eco", :fetch_format=>:auto,  class: "avatar dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
-<% else %>
-  <%= cl_image_tag "yoda.jpg", height: 60, width: 60, crop: :fill, :quality=>"auto:eco", :fetch_format=>:auto, class: "avatar dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
-<% end %>
-<p>Username: <%= user.name %></p>
-<p>Useremail: <%= user.email %></p>
-<p>TA? : <%= user.ta %></p>
+<div class="container col-sm-12">
+  <div class="row">
 
-<% end %>
+    <% User.all.each do |user| %>
+
+
+    <div class="col-xs-12 col-sm-6 col-md-4">
+      <div class="card_user" style="">
+        <% if user.photo.filename %>
+          <%= cl_image_tag user.photo, height: 180, width: 286, crop: :fill, :quality=>"auto:eco", :fetch_format=>:auto,  class: "card-img-top" %>
+        <% else %>
+          <%= cl_image_tag "yoda.jpg", height: 180, width: 286, crop: :fill, :quality=>"auto:eco", :fetch_format=>:auto, class: "card-img-top" %>
+        <% end %>
+        <div class="card-body">
+          <h4 class="card-title"><%= user.name %></h4>
+          <p class="card-text"><%= user.email %></p>
+          <% if user.ta %>
+            <div class="role">Teaching Assistant</div>
+          <% else %>
+            <div class="role">Student</div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <% end %>
+  </div>
+</div>

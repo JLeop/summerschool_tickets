@@ -1,4 +1,4 @@
-<%if user_signed_in? && current_user.admin %>
+<% if user_signed_in? && current_user.admin %>
   <div class="navbar-wagon" style="background: #f9f970">
 <% elsif user_signed_in? && current_user.ta %>
   <div class="navbar-wagon" style="background: #73e2ce">
@@ -7,7 +7,7 @@
 <% end %>
   <!-- Logo -->
   <%= link_to root_path, class: "navbar-wagon-brand" do %>
-    <%= image_tag "https://summerschool.shsg.ch/images/TheCO_Logo_schwarz_summer-school.png", height: 50 %>
+    <%= cl_image_tag("TheCO_Logo_schwarz_summer-school.png", height: 50, :quality=>"auto:eco", :fetch_format=>:auto) %>
   <% end %>
 
   <!-- Right Navigation -->
@@ -18,12 +18,10 @@
       <!-- Links when logged in -->
       <%= link_to "New Ticket", new_ticket_path, class: "navbar-wagon-item navbar-wagon-link" %>
       <%= link_to "Curriculum", "https://summerschool.shsg.ch/#tech", class: "navbar-wagon-item navbar-wagon-link", target: "_blank" %>
+      <%= link_to "Classmates", user_dashboard_path, class: "navbar-wagon-item navbar-wagon-link" %>
       <% if current_user.ta %>
         <%= link_to "Dashboard", dashboard_path, class: "navbar-wagon-item navbar-wagon-link" %>
         <%= link_to "Archive", archive_path, class: "navbar-wagon-item navbar-wagon-link" %>
-        <% if current_user.admin %>
-          <%= link_to "User Overview", user_dashboard_path, class: "navbar-wagon-item navbar-wagon-link" %>
-        <% end %>
       <% end %>
 
       <!-- Avatar with dropdown menu -->

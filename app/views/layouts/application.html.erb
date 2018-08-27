@@ -12,9 +12,12 @@
   <body>
     <%= render 'shared/navbar' %>
     <%= render 'shared/flashes' %>
-    <div class="container">
-      <%= yield %>
+    <div class="container" style="min-height: 90vh;">
+      <div class="container col-sm-8 col-sm-offset-2">
+        <%= yield %>
+      </div>
     </div>
+    <%= render 'shared/footer' %>
     <%= javascript_include_tag 'application' %>
     <%= javascript_pack_tag 'application' %>
   </body>

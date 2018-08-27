@@ -38,10 +38,8 @@ class TicketsController < ApplicationController
   end
 
   def destroy
-    if @ticket.status == "pending"
-      @ticket.destroy
-      redirect_to tickets_path
-    end
+    @ticket.destroy
+    redirect_to tickets_path
   end
 
   def assign_edit
@@ -68,12 +66,14 @@ class TicketsController < ApplicationController
   end
 
   def status_solved
-    @ticket.status = "solved"
-    authorize @ticket
-    if @ticket.save!
-      redirect_to tickets_path, notice: "Good Job Ticket was solved!"
-    else
-      redirect_to tickets_path, alert: "Something went wrong"
+    if @ticket.status == "assigned"
+      @ticket.status = "solved"
+      authorize @ticket
+      if @ticket.save!
+        redirect_to tickets_path, notice: "Good Job Ticket was solved!"
+      else
+        redirect_to tickets_path, alert: "Something went wrong"
+      end
     end
   end
 
