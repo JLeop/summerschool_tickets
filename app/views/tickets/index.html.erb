@@ -1,9 +1,7 @@
 <h1>Open Tickets</h1>
-<h2>User: <%= user_signed_in? ? current_user.email : "logged out" %></h2>
-<h2>User: <%= user_signed_in? ? current_user.name : "logged out" %></h2>
 
 <% if policy(Ticket).new? %>
-  <%= link_to "New Ticket", new_ticket_path %>
+  <%= link_to "New Ticket", new_ticket_path, class: "btn btn-default new-ticket-button" %>
 <% end %>
 
 <% @tickets.all.each do |ticket| %>
@@ -85,3 +83,6 @@
 </div>
 
 <% end %>
+
+<h2>User: <%= user_signed_in? ? current_user.email : "logged out" %></h2>
+<h2>User: <%= user_signed_in? ? current_user.name : "logged out" %></h2>
