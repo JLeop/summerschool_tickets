@@ -1,4 +1,4 @@
-<%if user_signed_in? && current_user.admin %>
+<% if user_signed_in? && current_user.admin %>
   <div class="navbar-wagon" style="background: #f9f970">
 <% elsif user_signed_in? && current_user.ta %>
   <div class="navbar-wagon" style="background: #73e2ce">
@@ -7,7 +7,7 @@
 <% end %>
   <!-- Logo -->
   <%= link_to root_path, class: "navbar-wagon-brand" do %>
-    <%= image_tag "https://summerschool.shsg.ch/images/TheCO_Logo_schwarz_summer-school.png", height: 50 %>
+    <%= cl_image_tag("TheCO_Logo_schwarz_summer-school.png", height: 50, :quality=>"auto:eco", :fetch_format=>:auto) %>
   <% end %>
 
   <!-- Right Navigation -->

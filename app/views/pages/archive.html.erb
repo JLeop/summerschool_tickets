@@ -1,21 +1,2 @@
 <h1>Archived Tickets</h1>
-<h2>User:<%= user_signed_in? ? current_user.name : "logged out" %></h2>
-
-<p>------------------------------------------</p>
-
-<% @tickets.each do |ticket| %>
-  <p>Question: <%= ticket.question %></p>
-  <p>Student: <%= ticket.student.name %></p>
-  <p>TA: <%= ticket.ta ? ticket.ta.name : "Unassigned" %></p>
-  <p>Status: <%= ticket.status %></p>
-  <h3>Links</h3>
-
-  <% if policy(ticket).edit? %>
-    <%= link_to "Edit", edit_ticket_path(ticket), class: ""%>
-  <% end %>  <br>
-
-  <% if policy(ticket).destroy? %>
-    <%= link_to "Delete ", ticket_path(ticket), class: "", method: :delete%>
-  <% end %>
-  <p>---------------------------------------</p><br>
-<% end %>
+<%= render 'shared/card', tickets: @tickets %>

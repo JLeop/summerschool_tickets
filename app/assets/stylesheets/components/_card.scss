@@ -57,11 +57,12 @@
   left: 90px;
   font-size: 15px;
   text-transform: uppercase;
+  margin-bottom: 10px;
 }
 .card-description {
   position: absolute;
   width: 80%;
-  bottom: 10px;
+  top: 20px;
   left: 90px;
 }
 .card-description h2 {
@@ -84,4 +85,33 @@
 }
 .card-link:hover {
   opacity: 0.1;
+}
+
+.card-row {
+  position: absolute;
+  bottom: 0px;
+  left: 90px;
+  display: flex;
+  margin-top: 3px;
+  margin-bottom: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  justify-content: space between;
+}
+
+.card-footer-element {
+  padding: 15px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  margin-right: -1px;
+  margin-left: 0px;
+  text-align: center;
+  items-align: center;
+  border-left: 1px solid #e2e2e2;
+  border-right: 1px solid #e2e2e2;
+  height: auto;
+  // border: 1px solid grey;
+  // border-radius: 20px;
+  line-height: auto;
+  font-size: 18px;
 }
