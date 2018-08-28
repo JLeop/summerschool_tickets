@@ -10,7 +10,7 @@
         <% if user.photo.filename %>
           <%= cl_image_tag user.photo, height: 180, width: 286, crop: :fill, :quality=>"auto:eco", :fetch_format=>:auto,  class: "card-img-top" %>
         <% else %>
-          <%= cl_image_tag "yoda.jpg", height: 180, width: 286, crop: :fill, :quality=>"auto:eco", :fetch_format=>:auto, class: "card-img-top" %>
+          <%= image_tag "https://picsum.photos/286/180/?random", height: 180, width: 286, class: "card-img-top" %>
         <% end %>
         <div class="card-body">
           <h4 class="card-title"><%= user.name %></h4>
