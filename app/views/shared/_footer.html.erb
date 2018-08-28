@@ -7,7 +7,9 @@
     <a href="#"><i class="fab fa-linkedin"></i></a>
   </div>
   <div class="footer-user">
-    Logged in as:   <%= current_user.name %>
+    <% if user_signed_in? %>
+      Logged in as:   <%= current_user.name %>
+      <% end %>
   </div>
   <div class="footer-copyright">
     Made with <i class="fas fa-heart"></i> by Julian | 2018 <i class="far fa-copyright"></i> DataLab St.Gallen
