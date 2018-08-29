@@ -30,7 +30,7 @@
           <% if current_user.photo.filename %>
             <%= cl_image_tag current_user.photo, height: 45, width: 45, crop: :fill, :quality=>"auto:eco", :fetch_format=>:auto,  class: "avatar dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
           <% else %>
-            <%= image_tag "https://picsum.photos/45/45/?random", height: 45, width: 45, class: "avatar dropdown-toggle" %>
+            <%= image_tag "https://picsum.photos/45/45/?random", height: 45, width: 45, class: "avatar dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
           <% end %>
           <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
             <li>
