@@ -1,6 +1,4 @@
-<%= content_for(:tab_title) do %>
-Archived Tickets Summer School
-<% end %>
+<%= content_for :title, "Archived Tickets Summer School" %>
 
 <h1>Archived Tickets</h1>
 <%= render 'shared/card', tickets: @tickets %>
